@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-sinope",
+  "name": "homebridge-sinope-node4",
   "version": "0.0.1",
   "description": "Sinope plugin for homebridge",
   "license": "ISC",
@@ -10,7 +10,7 @@
     "debug": "DEBUG=* homebridge --debug --plugin-path ."
   },
   "engines": {
-    "node": ">=6.2.2",
+    "node": ">=4.6.1",
     "homebridge": ">=0.3.4"
   },
   "main": "./src/index.js",

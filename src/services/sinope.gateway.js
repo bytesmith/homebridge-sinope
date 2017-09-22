@@ -1,30 +1,33 @@
-const { httpAction, sessionOption } = require('./request');
-const R = require('ramda');
+'use strict';
 
-const uri = [ 'https://neviweb.com/api' ];
-const urlComposer = R.compose(R.join('/'), R.concat);
+var _require = require('./request'),
+    httpAction = _require.httpAction,
+    sessionOption = _require.sessionOption;
+
+var R = require('ramda');
+
+var uri = ['https://neviweb.com/api'];
+var urlComposer = R.compose(R.join('/'), R.concat);
 
 function request(params) {
+  var method = params.method,
+      url = params.url,
+      path = params.path,
+      body = params.body,
+      queryString = params.queryString,
+      sessionId = params.sessionId;
 
-  const {
-    method,
-    url,
-    path,
-    body,
-    queryString,
-    sessionId,
-  } = params;
 
-  const httpRequest = sessionId ? sessionOption(sessionId) : httpAction;
-  const httpOptions = {
+  var httpRequest = sessionId ? sessionOption(sessionId) : httpAction;
+  var httpOptions = {
     qs: queryString,
-    body,
+    body: body
   };
-  const sinopeUrl = url ? url : urlComposer(uri, path);
+  var sinopeUrl = url ? url : urlComposer(uri, path);
 
   return httpRequest(method, sinopeUrl, httpOptions);
 }
 
 module.exports = {
-  request,
+  request: request
 };
